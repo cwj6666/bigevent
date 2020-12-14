@@ -10,6 +10,7 @@ $('#goToLogin').on('click',function(){
 })
 let  form = layui.form;
 let  layer = layui.layer;
+
 //条件验证
 form.verify({ 
     repass:function(item){
@@ -31,7 +32,7 @@ $('#regForm').on('submit',function(e){
     let data=$('#regForm').serialize();
     $.ajax({
         type:'POST',
-        url:'http://ajax.frontend.itheima.net/api/reguser',
+        url:'/api/reguser',
         data,
         success:function(res){
            if(res.status!==0){
@@ -48,12 +49,13 @@ $('#loginForm').on('submit',function(e){
     let data=$('#loginForm').serialize();
     $.ajax({
         type:'POST',
-        url:'http://ajax.frontend.itheima.net/api/login',
+        url:'/api/login',
         data,
         success:function(res){
            if(res.status!==0){
                return layer.msg(res.message);
            }
+           localStorage.setItem('token',res.token)
            layer.msg('登陆成功', {
            
             time: 2000 //2秒关闭（如果不配置，默认是3秒）
