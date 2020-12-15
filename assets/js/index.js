@@ -1,11 +1,11 @@
 //处理图片头像和文字头像
 $.ajax({
     url:'/my/userinfo',
-    headers:{
-        Authorization:localStorage.getItem('token')
-    },
     success:function(res){
         console.log(res);
+        if(res.message!=='获取用户基本信息成功！'&& res.status!==0){
+            location.href="login.html";
+        }
         let name=res.data.nickname||res.data.username;
         $('.welocome').html('欢迎&nbsp;&nbsp;'+name);
         if(res.data.user_pic){

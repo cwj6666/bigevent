@@ -52,6 +52,7 @@ $('#loginForm').on('submit',function(e){
         url:'/api/login',
         data,
         success:function(res){
+          
            if(res.status!==0){
                return layer.msg(res.message);
            }
